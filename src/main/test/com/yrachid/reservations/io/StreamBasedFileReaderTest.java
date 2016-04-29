@@ -66,8 +66,8 @@ public class StreamBasedFileReaderTest {
         int expectedSize = 2;
         reader = new StreamBasedFileReader(resolvePath(FILE_WITH_TWO_ENTRIES));
 
-        Iterable<FileLine> fileLines = reader.readLines();
-        int actualSize = ((Collection)fileLines).size();
+        Collection<FileLine> fileLines = reader.readLines();
+        int actualSize = fileLines.size();
 
         assertEquals(expectedSize, actualSize);
     }
