@@ -6,12 +6,18 @@ import com.yrachid.reservations.data.CustomerType;
 public class CustomerTypePatternParser implements PatternParser<CustomerType> {
 
     @Override
-    public CustomerType parse(String pattern) {
+    public CustomerType parse(String pattern) throws AbsentPatternException {
 
-        if (pattern.contains("Regular")){
+        pattern = pattern.toLowerCase();
+
+        if (pattern.contains(CustomerType.REGULAR.asString().toLowerCase())){
             return CustomerType.REGULAR;
         }
 
-        return CustomerType.REWARDS;
+        if (pattern.contains(CustomerType.REWARDS.asString().toLowerCase())) {
+            return CustomerType.REWARDS;
+        }
+
+        throw new AbsentPatternException("Could not find any Customer Type patterns on this string");
     }
 }

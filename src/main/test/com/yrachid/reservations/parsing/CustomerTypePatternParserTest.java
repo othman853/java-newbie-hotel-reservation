@@ -2,12 +2,11 @@ package com.yrachid.reservations.parsing;
 
 
 import com.yrachid.reservations.data.CustomerType;
-import com.yrachid.reservations.data.FileLine;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.yrachid.reservations.data.CustomerType.*;
-
+import static com.yrachid.reservations.data.CustomerType.REGULAR;
+import static com.yrachid.reservations.data.CustomerType.REWARDS;
 import static org.junit.Assert.assertEquals;
 
 public class CustomerTypePatternParserTest {
@@ -21,30 +20,49 @@ public class CustomerTypePatternParserTest {
 
     @Test
     public void parseShouldReturnRegularCustomerType() throws Exception {
-        FileLine line = new FileLine(1, "Regular");
 
-        CustomerType parsedType = parser.parse(line.value);
+        CustomerType parsedType = parser.parse("Regular");
 
         assertEquals(REGULAR, parsedType);
     }
 
     @Test
     public void parseShouldReturnRewardsCustomerType() throws Exception {
-        FileLine line = new FileLine(1, "Rewards");
 
-        CustomerType parsedType = parser.parse(line.value);
+        CustomerType parsedType = parser.parse("Rewards");
 
         assertEquals(REWARDS, parsedType);
     }
 
-
     @Test
     public void parseShouldReturnRewardsCustomerTypeBeingCaseInsensitive() throws Exception {
-        FileLine line = new FileLine(1, "rewards");
 
-        CustomerType parsedType = parser.parse(line.value);
+        CustomerType parsedType = parser.parse("rewards");
 
         assertEquals(REWARDS, parsedType);
+    }
+
+    @Test
+    public void parseShouldReturnRewardsCustomerTypeReceivingAStringFullOfGarbage() throws Exception {
+
+        CustomerType parsedType = parser.parse("rewards askdkajsdkasdjk ajsdjasdkjas");
+
+        assertEquals(REWARDS, parsedType);
+    }
+
+    @Test
+    public void parseShouldReturnRewardsCustomerTypeReceivingAStringFullOfGarbage2() throws Exception {
+
+        CustomerType parsedType = parser.parse("asdasdasdrewards askdkajsdkasdjk ajsdjasdkjas");
+
+        assertEquals(REWARDS, parsedType);
+    }
+
+    @Test(expected = AbsentPatternException.class)
+    public void parseShouldThrowAbsentPatternExceptionWhenNoPatternIsFound() throws Exception {
+
+        parser.parse("A String with no CustomerType Patterns");
+
     }
 
 }
