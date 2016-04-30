@@ -13,6 +13,6 @@ public class FileLine {
 
     @Override
     public String toString() {
-        return "{" + number + ", " + value + '}';
+        return number + ": " + value;
     }
 }
