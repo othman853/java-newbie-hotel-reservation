@@ -1,4 +1,4 @@
-package com.yrachid.reservations.io;
+package com.yrachid.reservations.exceptions;
 
 
 public class InvalidFileException extends Exception {
