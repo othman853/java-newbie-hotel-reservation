@@ -2,6 +2,7 @@ package com.yrachid.reservations.io;
 
 
 import com.yrachid.reservations.data.FileLine;
+import com.yrachid.reservations.exceptions.InvalidFileException;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;

@@ -2,6 +2,7 @@ package com.yrachid.reservations.parsing;
 
 
 import com.yrachid.reservations.data.CustomerType;
+import com.yrachid.reservations.exceptions.AbsentPatternException;
 import org.junit.Before;
 import org.junit.Test;
 

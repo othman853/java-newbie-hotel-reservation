@@ -1,6 +1,7 @@
 package com.yrachid.reservations.io;
 
 import com.yrachid.reservations.data.FileLine;
+import com.yrachid.reservations.exceptions.InvalidFileException;
 
 import java.io.IOException;
 import java.nio.file.Files;
