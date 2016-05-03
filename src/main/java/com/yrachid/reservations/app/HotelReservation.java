@@ -40,6 +40,17 @@ public class HotelReservation {
         }
     }
 
+    private void calculateCheapestPrices(Reservation reservation) {
+
+        ReservationPrice smallestPrice = calculator
+                .calculate(reservation)
+                .stream()
+                .reduce(ReservationPrice::smallest)
+                .get();
+
+        System.out.println(smallestPrice.hotel.name);
+    }
+
     public void start() throws InvalidFileException {
 
         Collection<FileLine> lines = readFile();
@@ -51,21 +62,11 @@ public class HotelReservation {
 
         reservations
                 .stream()
-                .forEach(reservation -> {
-
-                    ReservationPrice smallestPrice = calculator
-                            .calculate(reservation)
-                            .stream()
-                            .reduce(ReservationPrice::smallest)
-                            .get();
-
-                    System.out.println(smallestPrice.hotel.name);
-
-                });
+                .forEach(this::calculateCheapestPrices);
 
         errors
-                .entrySet()
-                .forEach(entry -> System.err.println(entry.getKey()));
+            .entrySet()
+            .forEach(entry -> System.err.println(entry.getKey()));
 
 
     }
