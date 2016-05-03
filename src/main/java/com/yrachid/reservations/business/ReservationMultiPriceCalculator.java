@@ -21,21 +21,9 @@ public class ReservationMultiPriceCalculator implements ReservationPriceCalculat
 
         Collection<ReservationPrice> prices = new ArrayList<>();
 
-        Collection<DayType> reservationDays = reservation
-                .dates
-                .stream()
-                .map(this::dayTypeOf)
-                .collect(Collectors.toList());
-
         for (Hotel hotel : hotelRepository.all()) {
 
-            Collection<HotelPrice> hotelPricesByCustomerType = hotel
-                    .prices
-                    .stream()
-                    .filter(price -> price.customerType.equals(reservation.customerType))
-                    .collect(Collectors.toList());
-
-            double value = calculateHotelPriceByCustomerType(reservationDays, hotelPricesByCustomerType);
+            double value = calculateHotelPriceByCustomerType(reservation.dayTypeList(), hotel.pricesByCustomerType(reservation.customerType));
 
             prices.add(new ReservationPrice(value, hotel));
 
@@ -62,9 +50,5 @@ public class ReservationMultiPriceCalculator implements ReservationPriceCalculat
             value += priceByDayType.value;
         }
         return value;
-    }
-
-    private DayType dayTypeOf(GregorianCalendar date) {
-        return date.get(Calendar.DAY_OF_WEEK) > 1 && date.get(Calendar.DAY_OF_WEEK) < 7 ? DayType.WEEKDAY : DayType.WEEKEND;
     }
 }

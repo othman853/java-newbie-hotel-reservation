@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class Reservation {
 
@@ -14,6 +15,18 @@ public class Reservation {
     public Reservation(CustomerType customerType, Collection<GregorianCalendar> dates) {
         this.customerType = customerType;
         this.dates = dates;
+    }
+
+    public Collection<DayType> dayTypeList() {
+
+        return dates
+                .stream()
+                .map(this::dayTypeOf)
+                .collect(Collectors.toList());
+    }
+
+    private DayType dayTypeOf(GregorianCalendar date) {
+        return date.get(Calendar.DAY_OF_WEEK) > 1 && date.get(Calendar.DAY_OF_WEEK) < 7 ? DayType.WEEKDAY : DayType.WEEKEND;
     }
 
     @Override

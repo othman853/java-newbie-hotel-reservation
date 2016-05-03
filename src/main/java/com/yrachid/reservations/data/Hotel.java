@@ -1,6 +1,7 @@
 package com.yrachid.reservations.data;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class Hotel {
 
@@ -15,4 +16,12 @@ public class Hotel {
         this.rating = rating;
         this.prices = prices;
     }
+
+    public Collection<HotelPrice> pricesByCustomerType(CustomerType customerType) {
+        return prices
+                .stream()
+                .filter(price -> price.customerType.equals(customerType))
+                .collect(Collectors.toList());
+    }
+
 }

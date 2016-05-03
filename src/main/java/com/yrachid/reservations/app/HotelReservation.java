@@ -53,6 +53,8 @@ public class HotelReservation {
                 .stream()
                 .forEach(reservation -> {
 
+                    System.out.println("Calculating: " + reservation);
+
                     ReservationPrice smallestPrice = calculator
                             .calculate(reservation)
                             .stream()
