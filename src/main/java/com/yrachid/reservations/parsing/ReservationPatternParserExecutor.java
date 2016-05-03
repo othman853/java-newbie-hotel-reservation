@@ -6,10 +6,9 @@ import com.yrachid.reservations.data.FileLine;
 import com.yrachid.reservations.data.Reservation;
 import com.yrachid.reservations.exceptions.PatternException;
 
-import java.io.File;
 import java.util.*;
 
-public class ReservationPatternParserExecuter implements PatternParserExecuter<Reservation> {
+public class ReservationPatternParserExecutor implements PatternParserExecutor<Reservation> {
 
     private PatternParser<CustomerType> customerTypePatternParser;
     private PatternParser<Collection<GregorianCalendar>> datesPatternParser;
@@ -17,7 +16,7 @@ public class ReservationPatternParserExecuter implements PatternParserExecuter<R
     private Map<FileLine, Exception> errors;
     private Collection<Reservation> parsedLines;
 
-    public ReservationPatternParserExecuter(PatternParser<CustomerType> customerTypePatternParser, PatternParser<Collection<GregorianCalendar>> datesPatternParser) {
+    public ReservationPatternParserExecutor(PatternParser<CustomerType> customerTypePatternParser, PatternParser<Collection<GregorianCalendar>> datesPatternParser) {
         this.customerTypePatternParser = customerTypePatternParser;
         this.datesPatternParser = datesPatternParser;
 

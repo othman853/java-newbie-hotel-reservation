@@ -36,7 +36,7 @@ public class Runner {
             PatternParser<CustomerType> customerTypePatternParser = new CustomerTypePatternParser();
             PatternParser<Collection<GregorianCalendar>> dateChainPatternParser = new DateChainPatternParser();
 
-            PatternParserExecuter<Reservation> executer = new ReservationPatternParserExecuter(customerTypePatternParser, dateChainPatternParser);
+            PatternParserExecutor<Reservation> executer = new ReservationPatternParserExecutor(customerTypePatternParser, dateChainPatternParser);
 
             HotelReservation app = new HotelReservation(hotelRepository, hotelPriceRepository, reader, executer);
 

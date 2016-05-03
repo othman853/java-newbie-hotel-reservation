@@ -6,7 +6,7 @@ import com.yrachid.reservations.data.FileLine;
 import java.util.Collection;
 import java.util.Map;
 
-public interface PatternParserExecuter<T> {
+public interface PatternParserExecutor<T> {
 
     void execute(Collection<FileLine> lines);
     Map<FileLine, Exception> getErrors();
