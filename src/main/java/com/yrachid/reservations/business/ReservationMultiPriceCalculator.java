@@ -40,12 +40,9 @@ public class ReservationMultiPriceCalculator implements ReservationPriceCalculat
 
             HotelPrice priceByDayType = hotelPricesByCustomerType
                     .stream()
-                    .filter(price1 -> price1
-                            .dayType
-                            .equals(type))
-                    .collect(Collectors
-                            .toList())
-                    .get(0);
+                    .filter(price1 -> price1.dayType.equals(type))
+                    .findFirst()
+                    .get();
 
             value += priceByDayType.value;
         }
