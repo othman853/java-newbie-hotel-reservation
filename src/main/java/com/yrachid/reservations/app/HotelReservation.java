@@ -16,12 +16,12 @@ import java.util.Map;
 public class HotelReservation {
 
 
-    private ReservationPriceCalculator calculator;
+    private ReservationPriceCalculator<Collection<ReservationPrice>> calculator;
     private final FileReader reader;
     private final PatternParserExecutor<Reservation> reservationParserExecuter;
 
 
-    public HotelReservation(ReservationPriceCalculator calculator, FileReader reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
+    public HotelReservation(ReservationPriceCalculator<Collection<ReservationPrice>> calculator, FileReader reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
 
         this.calculator = calculator;
         this.reader = reader;
@@ -50,11 +50,25 @@ public class HotelReservation {
         Map<FileLine, Exception> errors = reservationParserExecuter.getErrors();
 
         reservations
-                .forEach(System.out::println);
+                .stream()
+                .forEach(reservation -> {
+
+                    ReservationPrice smallestPrice = calculator
+                            .calculate(reservation)
+                            .stream()
+                            .reduce(ReservationPrice::smallest)
+                            .get();
+
+                    System.out.println(smallestPrice.hotel.name);
+
+                });
+
+
 
         errors
                 .entrySet()
                 .forEach(entry -> System.err.println(entry.getKey()));
+
 
     }
 
