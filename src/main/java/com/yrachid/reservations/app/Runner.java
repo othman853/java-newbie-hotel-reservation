@@ -2,7 +2,7 @@ package com.yrachid.reservations.app;
 
 
 import com.yrachid.reservations.business.CheapestPriceCalculator;
-import com.yrachid.reservations.business.ReservationPriceCalculator;
+import com.yrachid.reservations.business.PriceCalculator;
 import com.yrachid.reservations.data.CustomerType;
 import com.yrachid.reservations.data.ReservationPrice;
 import com.yrachid.reservations.exceptions.InvalidFileException;
@@ -32,7 +32,7 @@ public class Runner {
 
         HotelRepository hotelRepository = new InMemoryHotelRepository();
 
-        ReservationPriceCalculator<ReservationPrice> calculator = new CheapestPriceCalculator(hotelRepository);
+        PriceCalculator<ReservationPrice> calculator = new CheapestPriceCalculator(hotelRepository);
 
         FileReader<String> reader = new StreamBasedFileReader(filePath);
 
@@ -49,11 +49,10 @@ public class Runner {
         try {
 
             HotelReservation app = resolveDependencies(args);
-
             app.start();
 
-        } catch (InvalidFileException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         }
 
     }

@@ -4,7 +4,7 @@ package com.yrachid.reservations.business;
 import com.yrachid.reservations.data.*;
 import com.yrachid.reservations.repositories.HotelRepository;
 
-public class CheapestPriceCalculator implements ReservationPriceCalculator<ReservationPrice> {
+public class CheapestPriceCalculator implements PriceCalculator<ReservationPrice> {
 
     HotelRepository repository;
 
