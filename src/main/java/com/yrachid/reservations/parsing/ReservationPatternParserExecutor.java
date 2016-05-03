@@ -26,23 +26,22 @@ public class ReservationPatternParserExecutor implements PatternParserExecutor<R
 
     @Override
     public void execute(Collection<FileLine> lines) {
+        lines.forEach(this::runParsers);
+    }
 
-        for (FileLine line: lines) {
+    private void runParsers (FileLine line) {
 
-            try {
+        try {
 
-                CustomerType customerType = customerTypePatternParser.parse(line.value);
-                Collection<GregorianCalendar> dates = datesPatternParser.parse(line.value);
+            parsedLines.add(new Reservation(
+                            customerTypePatternParser
+                                    .parse(line.value),
+                            datesPatternParser
+                                    .parse(line.value)));
 
-                Reservation reservation = new Reservation(customerType, dates);
-
-                parsedLines.add(reservation);
-
-            } catch (PatternException error) {
-                errors.put(line, error);
-            }
+        } catch (PatternException error) {
+            errors.put(line, error);
         }
-
     }
 
     @Override
