@@ -21,4 +21,9 @@ public class ReservationPrice implements SmallestComparator<ReservationPrice> {
 
         return this.value > other.value ? other : this;
     }
+
+    @Override
+    public String toString() {
+        return hotel.name;
+    }
 }

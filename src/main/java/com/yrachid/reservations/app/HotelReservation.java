@@ -2,74 +2,44 @@ package com.yrachid.reservations.app;
 
 
 import com.yrachid.reservations.business.ReservationPriceCalculator;
-import com.yrachid.reservations.data.FileLine;
-import com.yrachid.reservations.data.Reservation;
 import com.yrachid.reservations.data.ReservationPrice;
 import com.yrachid.reservations.exceptions.InvalidFileException;
 import com.yrachid.reservations.io.FileReader;
-import com.yrachid.reservations.parsing.PatternParserExecutor;
+import com.yrachid.reservations.parsing.ReservationCompoundParser;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Map;
+import java.util.Optional;
 
 public class HotelReservation {
 
 
-    private ReservationPriceCalculator<Collection<ReservationPrice>> calculator;
-    private final FileReader<FileLine> reader;
-    private final PatternParserExecutor<Reservation> reservationParserExecuter;
+    private ReservationPriceCalculator<ReservationPrice> calculator;
+    private final FileReader<String> reader;
+    private final ReservationCompoundParser parser;
 
 
-    public HotelReservation(ReservationPriceCalculator<Collection<ReservationPrice>> calculator, FileReader<FileLine> reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
+    public HotelReservation(ReservationPriceCalculator<ReservationPrice> calculator, FileReader<String> reader, ReservationCompoundParser parser) {
 
         this.calculator = calculator;
         this.reader = reader;
-        this.reservationParserExecuter = reservationParserExecuter;
+        this.parser = parser;
     }
 
-    private Collection<FileLine> readFile() throws InvalidFileException {
+    public void start() throws InvalidFileException {
 
         try {
 
-            Collection<FileLine> lines = reader.readLines();
-            return  lines;
+            reader
+                    .readLines()
+                    .stream()
+                    .map(parser::parse)
+                    .filter(Optional::isPresent)
+                    .map(reservation -> calculator.calculate(reservation.get()))
+                    .forEach(System.out::println);
 
         } catch (IOException e) {
             throw new InvalidFileException(e.getMessage());
         }
     }
-
-    private void calculateCheapestPrices(Reservation reservation) {
-
-        ReservationPrice smallestPrice = calculator
-                .calculate(reservation)
-                .stream()
-                .reduce(ReservationPrice::smallest)
-                .get();
-
-        System.out.println(smallestPrice.hotel.name);
-    }
-
-    public void start() throws InvalidFileException {
-
-        Collection<FileLine> lines = readFile();
-
-        reservationParserExecuter.execute(lines);
-
-        Collection<Reservation> reservations = reservationParserExecuter.getValidParses();
-        Map<FileLine, Exception> errors = reservationParserExecuter.getErrors();
-
-        reservations
-                .stream()
-                .forEach(this::calculateCheapestPrices);
-
-        errors
-            .entrySet()
-            .forEach(entry -> System.err.println(entry.getKey()));
-
-
-    }
-
 
 }

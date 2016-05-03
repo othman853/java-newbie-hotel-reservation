@@ -1,6 +1,5 @@
 package com.yrachid.reservations.io;
 
-import com.yrachid.reservations.data.FileLine;
 import com.yrachid.reservations.exceptions.InvalidFileException;
 
 import java.io.IOException;
@@ -8,11 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class StreamBasedFileReader implements FileReader<FileLine>{
+public class StreamBasedFileReader implements FileReader<String> {
 
     private Path path;
 
@@ -36,16 +33,11 @@ public class StreamBasedFileReader implements FileReader<FileLine>{
     }
 
     @Override
-    public Collection<FileLine> readLines() throws IOException {
+    public Collection<String> readLines() throws IOException {
 
-        AtomicInteger lineNumber = new AtomicInteger(0);
-
-        List<FileLine> lines = Files
-                                .lines(path)
-                                .map(value -> new FileLine(lineNumber.incrementAndGet(), value))
-                                .collect(Collectors.toList());
-
-        return lines;
+        return Files
+                .lines(path)
+                .collect(Collectors.toList());
     }
 
 

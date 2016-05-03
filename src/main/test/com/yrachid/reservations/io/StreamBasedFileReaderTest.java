@@ -1,7 +1,6 @@
 package com.yrachid.reservations.io;
 
 
-import com.yrachid.reservations.data.FileLine;
 import com.yrachid.reservations.exceptions.InvalidFileException;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -56,7 +55,7 @@ public class StreamBasedFileReaderTest {
 
         reader = new StreamBasedFileReader(resolvePath(EMPTY_FILE));
 
-        Iterable<FileLine> fileLines = reader.readLines();
+        Iterable<String> fileLines = reader.readLines();
         boolean isIterableEmpty = !fileLines.iterator().hasNext();
 
         assertTrue(isIterableEmpty);
@@ -67,10 +66,12 @@ public class StreamBasedFileReaderTest {
         int expectedSize = 2;
         reader = new StreamBasedFileReader(resolvePath(FILE_WITH_TWO_ENTRIES));
 
-        Collection<FileLine> fileLines = reader.readLines();
+        Collection<String> fileLines = reader.readLines();
         int actualSize = fileLines.size();
 
         assertEquals(expectedSize, actualSize);
     }
+
+
 
 }
