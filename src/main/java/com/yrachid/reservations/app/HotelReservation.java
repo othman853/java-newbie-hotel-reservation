@@ -1,29 +1,29 @@
 package com.yrachid.reservations.app;
 
 
+import com.yrachid.reservations.business.ReservationPriceCalculator;
 import com.yrachid.reservations.data.FileLine;
 import com.yrachid.reservations.data.Reservation;
+import com.yrachid.reservations.data.ReservationPrice;
 import com.yrachid.reservations.exceptions.InvalidFileException;
 import com.yrachid.reservations.io.FileReader;
 import com.yrachid.reservations.parsing.PatternParserExecutor;
-import com.yrachid.reservations.repositories.HotelPriceRepository;
-import com.yrachid.reservations.repositories.HotelRepository;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
 
 public class HotelReservation {
 
-    private final HotelRepository hotelRepository;
-    private final HotelPriceRepository hotelPriceRepository;
 
+    private ReservationPriceCalculator calculator;
     private final FileReader reader;
     private final PatternParserExecutor<Reservation> reservationParserExecuter;
 
 
-    public HotelReservation(HotelRepository hotelRepository, HotelPriceRepository hotelPriceRepository, FileReader reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
-        this.hotelRepository = hotelRepository;
-        this.hotelPriceRepository = hotelPriceRepository;
+    public HotelReservation(ReservationPriceCalculator calculator, FileReader reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
+
+        this.calculator = calculator;
         this.reader = reader;
         this.reservationParserExecuter = reservationParserExecuter;
     }
