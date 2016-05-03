@@ -17,11 +17,11 @@ public class HotelReservation {
 
 
     private ReservationPriceCalculator<Collection<ReservationPrice>> calculator;
-    private final FileReader reader;
+    private final FileReader<FileLine> reader;
     private final PatternParserExecutor<Reservation> reservationParserExecuter;
 
 
-    public HotelReservation(ReservationPriceCalculator<Collection<ReservationPrice>> calculator, FileReader reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
+    public HotelReservation(ReservationPriceCalculator<Collection<ReservationPrice>> calculator, FileReader<FileLine> reader, PatternParserExecutor<Reservation> reservationParserExecuter) {
 
         this.calculator = calculator;
         this.reader = reader;
@@ -53,8 +53,6 @@ public class HotelReservation {
                 .stream()
                 .forEach(reservation -> {
 
-                    System.out.println("Calculating: " + reservation);
-
                     ReservationPrice smallestPrice = calculator
                             .calculate(reservation)
                             .stream()
@@ -64,8 +62,6 @@ public class HotelReservation {
                     System.out.println(smallestPrice.hotel.name);
 
                 });
-
-
 
         errors
                 .entrySet()
