@@ -19,9 +19,9 @@ public class HotelReservation {
 
     public HotelReservation(PriceCalculator<ReservationPrice> calculator, FileReader<String> reader, ReservationCompoundParser parser) {
 
-        this.calculator = calculator;
         this.reader = reader;
         this.parser = parser;
+        this.calculator = calculator;
     }
 
     public void start() throws IOException {
