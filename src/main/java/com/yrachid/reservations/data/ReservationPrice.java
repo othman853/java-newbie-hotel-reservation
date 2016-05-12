@@ -15,11 +15,14 @@ public class ReservationPrice implements SmallestDistinguisher<ReservationPrice>
     @Override
     public ReservationPrice smallest(ReservationPrice other) {
 
-        if (value == other.value) {
-            return hotel.rating > other.hotel.rating ? this : other;
-        }
+        return
+                this.value == other.value ?
 
-        return this.value > other.value ? other : this;
+                        (this.hotel.rating > other.hotel.rating  ? this : other)
+
+                        :
+
+                        (this.value > other.value ? other : this);
     }
 
     @Override
