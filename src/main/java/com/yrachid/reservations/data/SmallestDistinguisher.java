@@ -1,7 +1,7 @@
 package com.yrachid.reservations.data;
 
 
-public interface SmallestComparator<T> {
+public interface SmallestDistinguisher<T> {
 
     T smallest(T other);
 

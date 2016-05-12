@@ -1,7 +1,7 @@
 package com.yrachid.reservations.data;
 
 
-public class ReservationPrice implements SmallestComparator<ReservationPrice> {
+public class ReservationPrice implements SmallestDistinguisher<ReservationPrice> {
 
     public final double value;
     public final Hotel hotel;
