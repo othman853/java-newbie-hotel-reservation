@@ -6,6 +6,11 @@ For learning purposes
  - Trying to apply the best of OO
  - Trying to use some Java 8 features
  - Writing tests first
+ 
+What is still missing:
+
+ - Use of Java 8 Time API instead of Gregorian Calendar
+ - Bigger test coverage on cases where I did not follow the las premise (writing tests first)
 
 **** 
 
