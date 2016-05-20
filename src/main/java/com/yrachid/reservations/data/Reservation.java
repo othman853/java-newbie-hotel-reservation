@@ -1,6 +1,11 @@
 package com.yrachid.reservations.data;
 
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.GregorianCalendar;
@@ -10,9 +15,9 @@ import java.util.stream.Collectors;
 public class Reservation {
 
     public final CustomerType customerType;
-    public final Collection<GregorianCalendar> dates;
+    public final Collection<LocalDate> dates;
 
-    public Reservation(CustomerType customerType, Collection<GregorianCalendar> dates) {
+    public Reservation(CustomerType customerType, Collection<LocalDate> dates) {
         this.customerType = customerType;
         this.dates = dates;
     }
@@ -25,8 +30,9 @@ public class Reservation {
                 .collect(Collectors.toList());
     }
 
-    private DayType dayTypeOf(GregorianCalendar date) {
-        return date.get(Calendar.DAY_OF_WEEK) > 1 && date.get(Calendar.DAY_OF_WEEK) < 7 ? DayType.WEEKDAY : DayType.WEEKEND;
+    private DayType dayTypeOf(LocalDate date) {
+        DayOfWeek day = date.getDayOfWeek();
+        return (day.equals(DayOfWeek.SATURDAY) || day.equals(DayOfWeek.SUNDAY)) ? DayType.WEEKEND : DayType.WEEKDAY;
     }
 
     @Override
@@ -45,12 +51,8 @@ public class Reservation {
         return reservationAsString.toString();
     }
 
-    private String stringifyDate(GregorianCalendar date) {
-
-        return date
-                .get(GregorianCalendar.DATE) +
-                date.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.US) +
-                date.get(Calendar.YEAR);
+    private String stringifyDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("ddMMMyyy"));
 
     }
 }

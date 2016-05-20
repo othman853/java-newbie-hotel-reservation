@@ -9,14 +9,14 @@ import com.yrachid.reservations.exceptions.InvalidFileException;
 import com.yrachid.reservations.io.FileReader;
 import com.yrachid.reservations.io.StreamBasedFileReader;
 import com.yrachid.reservations.parsing.CustomerTypePatternParser;
-import com.yrachid.reservations.parsing.DateChainPatternParser;
+import com.yrachid.reservations.parsing.LocalDateParser;
 import com.yrachid.reservations.parsing.PatternParser;
 import com.yrachid.reservations.parsing.ReservationCompoundParser;
 import com.yrachid.reservations.repositories.HotelRepository;
 import com.yrachid.reservations.repositories.InMemoryHotelRepository;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 
 public class Runner {
 
@@ -37,7 +37,7 @@ public class Runner {
         FileReader<String> reader = new StreamBasedFileReader(filePath);
 
         PatternParser<CustomerType> customerTypePatternParser = new CustomerTypePatternParser();
-        PatternParser<Collection<GregorianCalendar>> dateChainPatternParser = new DateChainPatternParser();
+        PatternParser<Collection<LocalDate>> dateChainPatternParser = new LocalDateParser();
 
         ReservationCompoundParser parser = new ReservationCompoundParser(customerTypePatternParser, dateChainPatternParser);
 
@@ -54,7 +54,6 @@ public class Runner {
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
-
     }
 
 }

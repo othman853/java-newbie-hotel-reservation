@@ -45,27 +45,26 @@ public class LocalDateParserTest {
     }
 
 
+    @Test
+    public void parseShouldReturnACollectionWith28Mar200929Mar200930Mar2009Dates() throws Exception {
 
-//    @Test
-//    public void parseShouldReturnACollectionWith28Mar200929Mar200930Mar2009Dates() throws Exception {
-//
-//        Collection<GregorianCalendar> expectedDates = Arrays.asList(new GregorianCalendar(2009,2,28), new GregorianCalendar(2009,2,29), new GregorianCalendar(2009, 2, 30));
-//
-//        Collection<GregorianCalendar> parsedDates = parser.parse("28Mar2009(sat), 29Mar2009(sun), 30Mar2009(mon)");
-//
-//        assertEquals(3, parsedDates.size());
-//        assertEquals(expectedDates, parsedDates);
-//    }
-//
+        Collection<LocalDate> expectedDates = Arrays.asList(LocalDate.of(2009,3,28), LocalDate.of(2009,3,29), LocalDate.of(2009, 3, 30));
 
-//    @Test(expected = InvalidDatePatternException.class)
-//    public void parseShouldThrowInvalidDatePatternExceptionWith32Mar2009InvalidDates() throws Exception {
-//        parser.parse("32Mar2009(sat)");
-//    }
-//
-//    @Test(expected = AbsentPatternException.class)
-//    public void parseShouldThrowAbsentPatternExceptionWhenNoDateCanBeFound() throws Exception {
-//        parser.parse("A String that matches no date pattern");
-//    }
+        Collection<LocalDate> parsedDates = parser.parse("28Mar2009(sat), 29Mar2009(sun), 30Mar2009(mon)");
+
+        assertEquals(3, parsedDates.size());
+        assertEquals(expectedDates, parsedDates);
+    }
+
+
+    @Test(expected = InvalidDatePatternException.class)
+    public void parseShouldThrowInvalidDatePatternExceptionWith32Mar2009InvalidDates() throws Exception {
+        parser.parse("32Mar2009(sat)");
+    }
+
+    @Test(expected = AbsentPatternException.class)
+    public void parseShouldThrowAbsentPatternExceptionWhenNoDateCanBeFound() throws Exception {
+        parser.parse("A String that matches no date pattern");
+    }
 
 }

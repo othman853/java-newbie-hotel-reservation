@@ -1,15 +1,13 @@
 package com.yrachid.reservations.parsing;
 
 import com.yrachid.reservations.exceptions.AbsentPatternException;
-import com.yrachid.reservations.exceptions.InvalidDatePatternException;
 import com.yrachid.reservations.exceptions.PatternException;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
