@@ -12,7 +12,7 @@ import java.util.Optional;
 public class HotelReservation {
 
 
-    private PriceCalculator<ReservationPrice> calculator;
+    private final PriceCalculator<ReservationPrice> calculator;
     private final FileReader<String> reader;
     private final ReservationCompoundParser parser;
 
