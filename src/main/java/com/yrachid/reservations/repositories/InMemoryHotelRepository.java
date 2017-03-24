@@ -1,42 +1,64 @@
 package com.yrachid.reservations.repositories;
 
 
-import com.yrachid.reservations.data.CustomerType;
-import com.yrachid.reservations.data.DayType;
 import com.yrachid.reservations.data.Hotel;
-import com.yrachid.reservations.data.HotelPrice;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
-public class InMemoryHotelRepository implements HotelRepository{
+import static com.yrachid.reservations.data.CustomerType.REGULAR;
+import static com.yrachid.reservations.data.CustomerType.REWARDS;
+import static com.yrachid.reservations.data.DayType.WEEKDAY;
+import static com.yrachid.reservations.data.DayType.WEEKEND;
+import static com.yrachid.reservations.data.Hotel.hotel;
+import static com.yrachid.reservations.data.HotelPrice.hotelPrice;
+import static java.util.Arrays.asList;
 
-    private final List<Hotel> hotelList = Arrays.asList(
-            new Hotel(1, "Lakewood", 3, Arrays.asList(
-                    new HotelPrice(110,CustomerType.REGULAR, DayType.WEEKDAY),
-                    new HotelPrice(80, CustomerType.REWARDS, DayType.WEEKDAY),
-                    new HotelPrice(90, CustomerType.REGULAR, DayType.WEEKEND),
-                    new HotelPrice(80, CustomerType.REWARDS, DayType.WEEKEND)
-            )),
+public class InMemoryHotelRepository implements HotelRepository {
 
-            new Hotel(2, "Bridgewood", 4, Arrays.asList(
-                    new HotelPrice(160, CustomerType.REGULAR, DayType.WEEKDAY),
-                    new HotelPrice(110, CustomerType.REWARDS, DayType.WEEKDAY),
-                    new HotelPrice(60, CustomerType.REGULAR, DayType.WEEKEND),
-                    new HotelPrice(50, CustomerType.REWARDS, DayType.WEEKEND)
-            )),
-            new Hotel(3, "Ridgewood", 5, Arrays.asList(
-                    new HotelPrice(220, CustomerType.REGULAR, DayType.WEEKDAY),
-                    new HotelPrice(100, CustomerType.REWARDS, DayType.WEEKDAY),
-                    new HotelPrice(150, CustomerType.REGULAR, DayType.WEEKEND),
-                    new HotelPrice(40, CustomerType.REWARDS, DayType.WEEKEND)
-            ))
+    private static final Hotel LAKEWOOD = hotel(hotel ->
+            hotel
+                .id(1)
+                .name("Lakewood")
+                .rating(3)
+                .prices(asList(
+                            hotelPrice(price -> price.value(110).customerType(REGULAR).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(80).customerType(REWARDS).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(90).customerType(REGULAR).dayType(WEEKEND)),
+                            hotelPrice(price -> price.value(80).customerType(REWARDS).dayType(WEEKEND))
+                        )
+                )
+    );
+
+    private static final Hotel BRIDGEWOOD = hotel(hotel ->
+            hotel
+                .id(2)
+                .name("Bridgewood")
+                .rating(4)
+                .prices(asList(
+                            hotelPrice(price -> price.value(160).customerType(REGULAR).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(110).customerType(REWARDS).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(60).customerType(REGULAR).dayType(WEEKEND)),
+                            hotelPrice(price -> price.value(50).customerType(REWARDS).dayType(WEEKEND))
+                        )
+                )
+    );
+    private static final Hotel RIDGEWOOD = hotel(hotel ->
+            hotel
+                .id(3)
+                .name("Ridgewood")
+                .rating(5)
+                .prices(asList(
+                            hotelPrice(price -> price.value(220).customerType(REGULAR).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(100).customerType(REWARDS).dayType(WEEKDAY)),
+                            hotelPrice(price -> price.value(150).customerType(REGULAR).dayType(WEEKEND)),
+                            hotelPrice(price -> price.value(40).customerType(REWARDS).dayType(WEEKEND))
+                        )
+                )
     );
 
 
     @Override
     public Collection<Hotel> all() {
-        return hotelList;
+        return asList(LAKEWOOD, BRIDGEWOOD, RIDGEWOOD);
     }
 }
