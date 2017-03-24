@@ -6,7 +6,7 @@ import com.yrachid.reservations.repositories.HotelRepository;
 
 public class CheapestPriceCalculator implements PriceCalculator<ReservationPrice> {
 
-    HotelRepository repository;
+    private HotelRepository repository;
 
     private Reservation reservation;
 
