@@ -9,12 +9,20 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Collection;
 
-import static com.yrachid.reservations.PathHelper.*;
+import static java.lang.String.format;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 
 public class StreamBasedFileReaderTest {
+
+    private static final String BASE_PATH = System.getProperty("user.dir") + "/src/test/resources/files/%s";
+
+    private static final String INEXISTENT_FILE = "/I_DO_NOT_EXIST_IN_THIS_LONELY_FILE_SYSTEM";
+    private static final String NO_PERMISSION_FILE = format(BASE_PATH, "no_permission_file");
+    private static final String EMPTY_FILE = format(BASE_PATH, "empty_file");
+    private static final String FILE_WITH_TWO_ENTRIES = format(BASE_PATH, "two_entries_file");
+    private static final String A_DIRECTORY = System.getProperty("user.dir") + "/src/test/resources/files/";
 
     private StreamBasedFileReader reader;
 
