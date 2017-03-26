@@ -18,7 +18,6 @@ class HotelReservation {
 
 
     HotelReservation(PriceCalculator<ReservationPrice> calculator, FileReader<String> reader, ReservationCompoundParser parser) {
-
         this.reader = reader;
         this.parser = parser;
         this.calculator = calculator;

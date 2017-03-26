@@ -9,7 +9,7 @@ import com.yrachid.reservations.exceptions.InvalidFileException;
 import com.yrachid.reservations.io.FileReader;
 import com.yrachid.reservations.io.StreamBasedFileReader;
 import com.yrachid.reservations.parsing.CustomerTypePatternParser;
-import com.yrachid.reservations.parsing.LocalDateParser;
+import com.yrachid.reservations.parsing.ReservationCalendarParser;
 import com.yrachid.reservations.parsing.PatternParser;
 import com.yrachid.reservations.parsing.ReservationCompoundParser;
 import com.yrachid.reservations.repositories.HotelRepository;
@@ -36,8 +36,8 @@ public class Runner {
 
         FileReader<String> reader = new StreamBasedFileReader(filePath);
 
-        PatternParser<CustomerType> customerTypePatternParser = new CustomerTypePatternParser();
-        PatternParser<Collection<LocalDate>> dateChainPatternParser = new LocalDateParser();
+        CustomerTypePatternParser customerTypePatternParser = new CustomerTypePatternParser();
+        ReservationCalendarParser dateChainPatternParser = new ReservationCalendarParser();
 
         ReservationCompoundParser parser = new ReservationCompoundParser(customerTypePatternParser, dateChainPatternParser);
 
