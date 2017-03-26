@@ -9,9 +9,10 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Collection;
 
+import static com.yrachid.reservations.PathHelper.*;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static resources.PathHelper.*;
+
 
 public class StreamBasedFileReaderTest {
 
@@ -71,7 +72,6 @@ public class StreamBasedFileReaderTest {
 
         assertEquals(expectedSize, actualSize);
     }
-
 
 
 }
