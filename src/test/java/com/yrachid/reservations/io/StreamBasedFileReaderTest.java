@@ -27,7 +27,7 @@ public class StreamBasedFileReaderTest {
         expectedException.expect(InvalidFileException.class);
         expectedException.expectMessage("The specified file does not exist");
 
-        reader = new StreamBasedFileReader(resolvePath(INEXISTENT_FILE));
+        reader = new StreamBasedFileReader(INEXISTENT_FILE);
 
     }
 
@@ -37,7 +37,7 @@ public class StreamBasedFileReaderTest {
         expectedException.expect(InvalidFileException.class);
         expectedException.expectMessage("The specified file is not a valid file");
 
-        reader = new StreamBasedFileReader(resolvePath(A_DIRECTORY));
+        reader = new StreamBasedFileReader(A_DIRECTORY);
 
     }
 
@@ -48,13 +48,13 @@ public class StreamBasedFileReaderTest {
         expectedException.expect(InvalidFileException.class);
         expectedException.expectMessage("This file cannot be read by this user");
 
-        reader = new StreamBasedFileReader(resolvePath(NO_PERMISSION_FILE));
+        reader = new StreamBasedFileReader(NO_PERMISSION_FILE);
     }
 
     @Test
     public void readLines_ReturnAnEmptyIterable_WhenFileIsEmpty() throws Exception {
 
-        reader = new StreamBasedFileReader(resolvePath(EMPTY_FILE));
+        reader = new StreamBasedFileReader(EMPTY_FILE);
 
         Iterable<String> fileLines = reader.readLines();
         boolean isIterableEmpty = !fileLines.iterator().hasNext();
@@ -65,7 +65,7 @@ public class StreamBasedFileReaderTest {
     @Test
     public void readLines_ReturnAnIterableWithTwoFileLines_WhenFileHasTwoLines() throws Exception {
         int expectedSize = 2;
-        reader = new StreamBasedFileReader(resolvePath(FILE_WITH_TWO_ENTRIES));
+        reader = new StreamBasedFileReader(FILE_WITH_TWO_ENTRIES);
 
         Collection<String> fileLines = reader.readLines();
         int actualSize = fileLines.size();
