@@ -20,7 +20,7 @@ import java.util.Collection;
 
 public class Runner {
 
-    private static final String DEFAULT_FILE_PATH = "src/main/java/resources/entries";
+    private static final String DEFAULT_FILE_PATH = "src/main/resources/entries";
 
     private static boolean hasArgumentsFromCommandLine(String[] args) {
         return args.length > 0;
