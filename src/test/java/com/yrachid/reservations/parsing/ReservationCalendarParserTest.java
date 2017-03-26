@@ -8,17 +8,16 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class LocalDateParserTest {
+public class ReservationCalendarParserTest {
 
-    LocalDateParser parser;
+    ReservationCalendarParser parser;
 
     @Before
     public void setUp() throws Exception {
-        parser = new LocalDateParser();
+        parser = new ReservationCalendarParser();
     }
 
     @Test
