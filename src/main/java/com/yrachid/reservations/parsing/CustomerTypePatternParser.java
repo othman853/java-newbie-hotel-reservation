@@ -4,21 +4,23 @@ package com.yrachid.reservations.parsing;
 import com.yrachid.reservations.data.CustomerType;
 import com.yrachid.reservations.exceptions.AbsentPatternException;
 
+import static com.yrachid.reservations.data.CustomerType.REGULAR;
+import static com.yrachid.reservations.data.CustomerType.REWARDS;
+import static java.lang.String.format;
+
 public class CustomerTypePatternParser implements PatternParser<CustomerType> {
 
     @Override
     public CustomerType parse(String pattern) throws AbsentPatternException {
 
-        pattern = pattern.toLowerCase();
-
-        if (pattern.contains(CustomerType.REGULAR.asString().toLowerCase())){
-            return CustomerType.REGULAR;
+        if (pattern.trim().toLowerCase().equals(REGULAR.asString().toLowerCase())) {
+            return REGULAR;
         }
 
-        if (pattern.contains(CustomerType.REWARDS.asString().toLowerCase())) {
-            return CustomerType.REWARDS;
+        if (pattern.trim().toLowerCase().equals(REWARDS.asString().toLowerCase())) {
+            return REWARDS;
         }
 
-        throw new AbsentPatternException("Could not find any Customer Type patterns on this string");
+        throw new AbsentPatternException(format("%s does not match any customer type", pattern));
     }
 }
