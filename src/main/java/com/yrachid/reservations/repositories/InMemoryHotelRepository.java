@@ -42,6 +42,7 @@ public class InMemoryHotelRepository implements HotelRepository {
                         )
                 )
     );
+
     private static final Hotel RIDGEWOOD = hotel(hotel ->
             hotel
                 .id(3)
@@ -55,6 +56,7 @@ public class InMemoryHotelRepository implements HotelRepository {
                         )
                 )
     );
+
 
     @Override
     public Collection<Hotel> all() {
