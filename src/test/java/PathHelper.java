@@ -1,5 +1,3 @@
-package resources;
-
 public class PathHelper {
 
     public static final String INEXISTENT_FILE = "/I_DO_NOT_EXIST_IN_THIS_LONELY_FILE_SYSTEM";

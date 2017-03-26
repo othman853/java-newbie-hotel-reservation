@@ -12,6 +12,13 @@ public class Hotel {
     public final int rating;
     public final Collection<HotelPrice> prices;
 
+    public Hotel(int id, String name, int rating, Collection<HotelPrice> prices) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.prices = prices;
+    }
+
     private Hotel(HotelCollector collector) {
         this.id = collector.id;
         this.name = collector.name;

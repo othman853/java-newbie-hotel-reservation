@@ -56,7 +56,6 @@ public class InMemoryHotelRepository implements HotelRepository {
                 )
     );
 
-
     @Override
     public Collection<Hotel> all() {
         return asList(LAKEWOOD, BRIDGEWOOD, RIDGEWOOD);
