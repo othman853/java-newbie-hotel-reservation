@@ -9,7 +9,7 @@ import com.yrachid.reservations.parsing.ReservationCompoundParser;
 import java.io.IOException;
 import java.util.Optional;
 
-public class HotelReservation {
+class HotelReservation {
 
 
     private final PriceCalculator<ReservationPrice> calculator;
@@ -17,14 +17,14 @@ public class HotelReservation {
     private final ReservationCompoundParser parser;
 
 
-    public HotelReservation(PriceCalculator<ReservationPrice> calculator, FileReader<String> reader, ReservationCompoundParser parser) {
+    HotelReservation(PriceCalculator<ReservationPrice> calculator, FileReader<String> reader, ReservationCompoundParser parser) {
 
         this.reader = reader;
         this.parser = parser;
         this.calculator = calculator;
     }
 
-    public void start() throws IOException {
+    void start() throws IOException {
         reader
                 .readLines()
                 .stream()
