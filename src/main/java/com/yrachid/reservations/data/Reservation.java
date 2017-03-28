@@ -12,10 +12,12 @@ public class Reservation {
 
     public final CustomerType customerType;
     public final Collection<LocalDate> dates;
+    public final Collection<ReservationDate> reservationDates;
 
     public Reservation(CustomerType customerType, Collection<LocalDate> dates) {
         this.customerType = customerType;
         this.dates = dates;
+        this.reservationDates = dates.stream().map(ReservationDate::new).collect(toList());
     }
 
     public Collection<DayType> dayTypeList() {
