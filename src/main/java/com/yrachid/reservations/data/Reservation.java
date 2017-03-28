@@ -4,13 +4,9 @@ package com.yrachid.reservations.data;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Reservation {
 
@@ -27,7 +23,7 @@ public class Reservation {
         return dates
                 .stream()
                 .map(this::dayTypeOf)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private DayType dayTypeOf(LocalDate date) {
@@ -42,11 +38,7 @@ public class Reservation {
 
         reservationAsString.append(": ");
 
-        dates
-                .forEach(date -> reservationAsString
-                    .append(stringifyDate(date))
-                    .append(" ")
-                );
+        dates.stream().map(this::stringifyDate).forEach(reservationAsString::append);
 
         return reservationAsString.toString();
     }
