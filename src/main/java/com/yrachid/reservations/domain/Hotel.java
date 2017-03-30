@@ -1,4 +1,4 @@
-package com.yrachid.reservations.data;
+package com.yrachid.reservations.domain;
 
 import com.yrachid.reservations.repositories.CollectCallback;
 

@@ -1,4 +1,4 @@
-package com.yrachid.reservations.data;
+package com.yrachid.reservations.domain;
 
 import java.util.Collection;
 import java.util.List;
@@ -39,7 +39,7 @@ public class CalculatedReservation {
 
         List<HotelPrice> prices = pricesByCustomerType(hotel.prices);
 
-        List<Double> priceValuesByDate = reservation.reservationDates.stream().map(date -> (priceByDayType(date, prices).value)).collect(toList());
+        List<Double> priceValuesByDate = reservation.reservationDates.stream().map(date -> priceByDayType(date, prices).value).collect(toList());
 
         double totalPriceForReservation = priceValuesByDate.stream().reduce((accumulator, price) -> accumulator + price).get();
 

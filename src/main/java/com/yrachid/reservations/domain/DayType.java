@@ -1,4 +1,4 @@
-package com.yrachid.reservations.data;
+package com.yrachid.reservations.domain;
 
 
 public enum DayType {

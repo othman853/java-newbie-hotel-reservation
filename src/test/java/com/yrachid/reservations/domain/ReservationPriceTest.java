@@ -1,4 +1,4 @@
-package com.yrachid.reservations.data;
+package com.yrachid.reservations.domain;
 
 import org.junit.Test;
 

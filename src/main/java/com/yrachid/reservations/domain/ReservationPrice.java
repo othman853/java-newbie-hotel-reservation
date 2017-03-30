@@ -1,4 +1,4 @@
-package com.yrachid.reservations.data;
+package com.yrachid.reservations.domain;
 
 
 public class ReservationPrice implements SmallestDistinguisher<ReservationPrice> {
@@ -15,14 +15,15 @@ public class ReservationPrice implements SmallestDistinguisher<ReservationPrice>
     @Override
     public ReservationPrice smallest(ReservationPrice other) {
 
-        return
-                this.value == other.value ?
+        if (this.value == other.value) {
+            return (this.hotel.rating > other.hotel.rating)
+                    ? this
+                    : other;
+        }
 
-                        (this.hotel.rating > other.hotel.rating  ? this : other)
-
-                        :
-
-                        (this.value > other.value ? other : this);
+        return (this.value < other.value)
+                ? this
+                : other;
     }
 
     @Override
