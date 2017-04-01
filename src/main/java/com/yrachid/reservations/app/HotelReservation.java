@@ -2,7 +2,7 @@ package com.yrachid.reservations.app;
 
 
 import com.yrachid.reservations.business.PriceCalculator;
-import com.yrachid.reservations.data.ReservationPrice;
+import com.yrachid.reservations.domain.ReservationPrice;
 import com.yrachid.reservations.io.FileReader;
 import com.yrachid.reservations.parsing.ReservationCompoundParser;
 

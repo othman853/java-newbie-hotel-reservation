@@ -1,7 +1,7 @@
 package com.yrachid.reservations.repositories;
 
 
-import com.yrachid.reservations.data.Hotel;
+import com.yrachid.reservations.domain.Hotel;
 
 import java.util.Collection;
 

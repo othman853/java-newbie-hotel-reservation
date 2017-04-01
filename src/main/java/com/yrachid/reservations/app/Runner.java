@@ -3,20 +3,15 @@ package com.yrachid.reservations.app;
 
 import com.yrachid.reservations.business.CheapestPriceCalculator;
 import com.yrachid.reservations.business.PriceCalculator;
-import com.yrachid.reservations.data.CustomerType;
-import com.yrachid.reservations.data.ReservationPrice;
+import com.yrachid.reservations.domain.ReservationPrice;
 import com.yrachid.reservations.exceptions.InvalidFileException;
 import com.yrachid.reservations.io.FileReader;
 import com.yrachid.reservations.io.StreamBasedFileReader;
 import com.yrachid.reservations.parsing.CustomerTypePatternParser;
 import com.yrachid.reservations.parsing.ReservationCalendarParser;
-import com.yrachid.reservations.parsing.PatternParser;
 import com.yrachid.reservations.parsing.ReservationCompoundParser;
 import com.yrachid.reservations.repositories.HotelRepository;
 import com.yrachid.reservations.repositories.InMemoryHotelRepository;
-
-import java.time.LocalDate;
-import java.util.Collection;
 
 public class Runner {
 

@@ -31,15 +31,15 @@ public class CalculatedReservation {
         return prices.stream().filter(p -> p.customerType.equals(reservation.customerType)).collect(toList());
     }
 
-    private HotelPrice priceByDayType(ReservationDate date, List<HotelPrice> prices) {
-        return prices.stream().filter(price -> price.dayType.equals(date.getDayType())).findFirst().get();
+    private HotelPrice priceByDayType(ReservationDate date, Collection<HotelPrice> prices) {
+        return prices.stream().filter(price -> price.dayType.equals(date.dayType())).findFirst().get();
     }
 
     private ReservationPrice calculateReservationPrice(Hotel hotel) {
 
-        List<HotelPrice> prices = pricesByCustomerType(hotel.prices);
+        Collection<HotelPrice> prices = hotel.pricesByCustomerType(reservation.customerType);
 
-        List<Double> priceValuesByDate = reservation.reservationDates.stream().map(date -> priceByDayType(date, prices).value).collect(toList());
+        List<Double> priceValuesByDate = reservation.dates.stream().map(date -> priceByDayType(date, prices).value).collect(toList());
 
         double totalPriceForReservation = priceValuesByDate.stream().reduce((accumulator, price) -> accumulator + price).get();
 

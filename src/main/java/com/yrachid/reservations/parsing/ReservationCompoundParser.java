@@ -1,10 +1,8 @@
 package com.yrachid.reservations.parsing;
 
 
-import com.yrachid.reservations.data.Reservation;
+import com.yrachid.reservations.domain.Reservation;
 
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Optional;
 
 import static java.util.Optional.of;
@@ -12,7 +10,7 @@ import static java.util.Optional.of;
 public class ReservationCompoundParser implements PatternParser<Optional<Reservation>> {
 
     private CustomerTypePatternParser customerTypeParser;
-    private PatternParser<Collection<LocalDate>> dateChainParser;
+    private ReservationCalendarParser dateChainParser;
 
     public ReservationCompoundParser(CustomerTypePatternParser customerTypeParser, ReservationCalendarParser dateChainParser) {
         this.customerTypeParser = customerTypeParser;

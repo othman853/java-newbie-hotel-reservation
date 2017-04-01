@@ -6,26 +6,28 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.Collections.emptyList;
 
 public class Reservation {
 
     public final CustomerType customerType;
-    public final Collection<LocalDate> dates;
-    public final Collection<ReservationDate> reservationDates;
+    //    public final Collection<LocalDate> dates;
+    public final Collection<ReservationDate> dates;
 
-    public Reservation(CustomerType customerType, Collection<LocalDate> dates) {
+    public Reservation(CustomerType customerType, Collection<ReservationDate> dates) {
         this.customerType = customerType;
+//        this.dates = dates;
         this.dates = dates;
-        this.reservationDates = dates.stream().map(ReservationDate::new).collect(toList());
     }
 
     public Collection<DayType> dayTypeList() {
 
-        return dates
-                .stream()
-                .map(this::dayTypeOf)
-                .collect(toList());
+        return emptyList();
+
+//        return dates
+//                .stream()
+//                .map(this::dayTypeOf)
+//                .collect(toList());
     }
 
     private DayType dayTypeOf(LocalDate date) {
@@ -40,7 +42,7 @@ public class Reservation {
 
         reservationAsString.append(": ");
 
-        dates.stream().map(this::stringifyDate).forEach(reservationAsString::append);
+//        dates.stream().map(this::stringifyDate).forEach(reservationAsString::append);
 
         return reservationAsString.toString();
     }

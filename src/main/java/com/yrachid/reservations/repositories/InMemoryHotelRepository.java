@@ -1,16 +1,16 @@
 package com.yrachid.reservations.repositories;
 
 
-import com.yrachid.reservations.data.Hotel;
+import com.yrachid.reservations.domain.Hotel;
 
 import java.util.Collection;
 
-import static com.yrachid.reservations.data.CustomerType.REGULAR;
-import static com.yrachid.reservations.data.CustomerType.REWARDS;
-import static com.yrachid.reservations.data.DayType.WEEKDAY;
-import static com.yrachid.reservations.data.DayType.WEEKEND;
-import static com.yrachid.reservations.data.Hotel.hotel;
-import static com.yrachid.reservations.data.HotelPrice.hotelPrice;
+import static com.yrachid.reservations.domain.CustomerType.REGULAR;
+import static com.yrachid.reservations.domain.CustomerType.REWARDS;
+import static com.yrachid.reservations.domain.DayType.WEEKDAY;
+import static com.yrachid.reservations.domain.DayType.WEEKEND;
+import static com.yrachid.reservations.domain.Hotel.hotel;
+import static com.yrachid.reservations.domain.HotelPrice.hotelPrice;
 import static java.util.Arrays.asList;
 
 public class InMemoryHotelRepository implements HotelRepository {

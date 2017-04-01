@@ -1,12 +1,12 @@
 package com.yrachid.reservations.parsing;
 
 
-import com.yrachid.reservations.data.CustomerType;
+import com.yrachid.reservations.domain.CustomerType;
 
 import java.util.Optional;
 
-import static com.yrachid.reservations.data.CustomerType.REGULAR;
-import static com.yrachid.reservations.data.CustomerType.REWARDS;
+import static com.yrachid.reservations.domain.CustomerType.REGULAR;
+import static com.yrachid.reservations.domain.CustomerType.REWARDS;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 

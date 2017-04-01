@@ -1,7 +1,7 @@
 package com.yrachid.reservations.parsing;
 
 
-import com.yrachid.reservations.data.CustomerType;
+import com.yrachid.reservations.domain.CustomerType;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,8 +9,8 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Optional;
 
-import static com.yrachid.reservations.data.CustomerType.REGULAR;
-import static com.yrachid.reservations.data.CustomerType.REWARDS;
+import static com.yrachid.reservations.domain.CustomerType.REGULAR;
+import static com.yrachid.reservations.domain.CustomerType.REWARDS;
 import static org.junit.Assert.assertEquals;
 
 public class CustomerTypePatternParserTest {
